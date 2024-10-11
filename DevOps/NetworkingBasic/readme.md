@@ -245,44 +245,6 @@ This IP address is used to connect to the destination server.
 - **Internet Backbone**: Data travels through routers and networks to reach the destination server.
 - **Return Path**: The server sends data back along the same route, ultimately reaching your PC.
 
-
-# Local PC to Router
-
-```mermaid
-flowchart TD
-    A[User Action: Access Internet from Local PC] --> B[Application Layer (HTTP, DNS)]
-    B --> C[Transport Layer (TCP/UDP)]
-    C --> D[Network Layer (IP Address Resolution)]
-    D --> E[Data Link Layer (Ethernet/Wi-Fi)]
-    E --> F[Physical Layer (Ethernet Cable, Wireless Signal)]
-    
-    F --> G[Router: Local Network Gateway]
-    G --> H[Router Checks Routing Table]
-    H --> I[Router Forwards Packet to ISP]
-
-    I --> J[ISP's Network Infrastructure]
-    J --> K[ISP Routes Packet to Internet Backbone]
-    K --> L[Internet Backbone Routes to Destination Server]
-    
-    L --> M[Server Receives Data Packet]
-    M --> N[Server Processes Request (Application Layer)]
-    N --> O[Server Sends Response Back Through Same Layers]
-    
-    O --> P[Response Travels Back Through Internet Backbone]
-    P --> Q[ISP Receives Response]
-    Q --> R[Router Receives Data]
-    R --> S[Router Forwards Data to Local PC]
-    
-    S --> T[Local PC Receives Response (Physical Layer)]
-    T --> U[Data Moves Up Through Data Link Layer]
-    U --> V[Network Layer (IP Verification)]
-    V --> W[Transport Layer (TCP/UDP Reassembly)]
-    W --> X[Application Layer (HTTP, Browser Displays Content)]
-
-```
---------
-<br><br>
-
 ------
 
 # Explanation of Subnetting
@@ -391,43 +353,6 @@ flowchart TD
 ```
 <br><br>
 
-# Here’s a workflow diagram representing IP classes, subnetting, and configuration processes in Linux
-
-```mermaid
-flowchart TD
-    A[Start Configuration] --> B{Select IP Class}
-    B -->|Class A| C[IP Range: 1.0.0.0 to 126.255.255.255]
-    B -->|Class B| D[IP Range: 128.0.0.0 to 191.255.255.255]
-    B -->|Class C| E[IP Range: 192.0.0.0 to 223.255.255.255]
-    B -->|Class D| F[IP Range: 224.0.0.0 to 239.255.255.255 (Multicast)]
-    B -->|Class E| G[IP Range: 240.0.0.0 to 255.255.255.255 (Experimental)]
-
-    C --> H[Subnetting Class A]
-    D --> I[Subnetting Class B]
-    E --> J[Subnetting Class C]
-
-    H --> K[Determine Subnet Mask]
-    I --> L[Determine Subnet Mask]
-    J --> M[Determine Subnet Mask]
-
-    K --> N[Configure Network Interface in Linux]
-    L --> N
-    M --> N
-
-    N --> O{Choose Interface Type}
-    O -->|Host| P[Configure Static or DHCP IP]
-    O -->|Bridge| Q[Configure Bridge Interface]
-
-    P --> R[Apply Configuration]
-    Q --> R
-
-    R --> S[Verification]
-    S --> T[Check Connectivity with ping]
-    S --> U[Check IP Configuration with ifconfig or ip addr]
-    S --> V[Exit Configuration Process]
-
-```
-<br><br>
 -------
 
 # The HTTP Journey from Your Local PC to a Web Server (and Back)
@@ -535,25 +460,15 @@ flowchart TD
     E -->|Yes| F[Perform TLS Handshake]
     E -->|No| G[Proceed Without Encryption]
     F --> H[Send HTTP Request]
-    G --> H[Send HTTP Request]
-    
     H --> I[Web Server Receives Request]
-    I --> J{Is it Static or Dynamic Resource?}
-    J -->|Static| K[Serve Static Resource (HTML, CSS, etc.)]
-    J -->|Dynamic| L[Process via Backend Logic (Database, APIs, etc.)]
-    
+    I --> J{Static or Dynamic Resource?}
     K --> M[Generate HTTP Response]
     L --> M[Generate HTTP Response]
-    
     M --> N[Send HTTP Response to Browser]
     N --> O{Status Code 200?}
     O -->|Yes| P[Browser Parses and Renders HTML]
-    O -->|No| Q[Display Error Message]
-    
-    P --> R[Fetch Additional Resources (CSS, JS, Images)]
     R --> S[Render Complete Webpage]
     S --> T[Terminate or Reuse Connection]
-    
     Q --> T[Terminate or Reuse Connection]
-
-```
+    
+    ```
