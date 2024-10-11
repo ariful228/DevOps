@@ -1,51 +1,79 @@
-# Computer basic workflow
+# Computer Basic Workflow
 
-1. **Power On**  
-   - **Power Supply**: The power supply sends electricity to all components.  
-   - **ROM (Read-Only Memory)**: The BIOS/UEFI, stored in ROM, provides the instructions to start up the system.
+**Power On**
+>[!TIP]
+> **Power Supply**: Sends electricity to components. <br>
+> **ROM**: BIOS/UEFI provides startup instructions. <br>
 
-2. **BIOS/UEFI Initialization**  
-   - **POST (Power-On Self-Test)**: The BIOS checks if critical components like the CPU, RAM, and storage are working.  
-   - **Bootloader**: After POST, the BIOS finds the bootloader, which is responsible for loading the Operating System (OS) into RAM.
+**BIOS/UEFI Initialization**
+>[!TIP] 
+> **POST**: Checks critical components. <br>
+> **Bootloader**: Loads the Operating System (OS) into RAM. <br>
 
-3. **OS Loading**  
-   - **Disk to RAM**: The Operating System (OS) is loaded from the disk (HDD/SSD) into RAM.  
-   - **Kernel Initialization**: The kernel, which is the core part of the OS, is loaded first. The kernel manages system resources (CPU, memory, and devices).
+**OS Loading**
+>[!TIP] 
+> Loads OS from disk (HDD/SSD) into RAM. <br>
+> Initializes the kernel, managing system resources. <br>
 
-4. **CPU Starts Fetch-Decode-Execute Cycle**  
-   - **Fetching Instructions**: The CPU starts its main cycle (fetch-decode-execute):  
-     - **Fetch**: The CPU retrieves instructions from RAM.  
-     - **Decode**: It decodes the instructions to understand what action needs to be taken.  
-     - **Execute**: The CPU executes the instructions, which might include calculations, memory access, or hardware communication.
+**CPU Fetch-Decode-Execute Cycle**
+>[!TIP] 
+> **Fetch**: Retrieves instructions from RAM. <br>
+> **Decode**: Understands actions to take. <br>
+> **Execute**: Performs actions, like calculations and memory access. <br>
 
-5. **Data Transfer via Buses**  
-   - **Buses**: Data moves between the CPU, RAM, disk, and other hardware via high-speed pathways called buses.  
-   - **Memory Bus**: The CPU fetches instructions and data from RAM using the memory bus.  
-   - **I/O Bus**: Data is transferred to and from devices (e.g., disk, keyboard, network) via I/O buses.
+**Data Transfer via Buses**
+>[!TIP] 
+> Data moves between CPU, RAM, disk, and devices using buses. <br>
 
-6. **Running Applications**  
-   - **Loading Applications**: When you open a program (e.g., a web browser or Python script), the OS loads the program from disk into RAM for faster access.  
-   - **CPU Executes Instructions**: The CPU fetches and executes the application’s instructions from RAM. The OS schedules tasks to be run by the CPU.
+**Running Applications**
+>[!TIP] 
+> Loads applications into RAM for faster access. <br>
+> CPU executes application instructions. <br>
 
-7. **Memory Management**  
-   - **RAM Usage**: The kernel manages memory allocation. Active applications are stored in RAM for fast access.  
-   - **Virtual Memory**: If RAM fills up, the OS may use virtual memory (on the disk) to extend available memory, though it's slower.
+**Memory Management**
+>[!TIP] 
+> Manages RAM usage and may use virtual memory when RAM is full.
 
-8. **Multitasking and Process Management**  
-   - **Task Scheduling**: The OS kernel manages multiple applications (processes) at the same time, using multitasking. It allocates CPU time to each running program, making them appear to run simultaneously.  
-   - **Interrupts**: The CPU handles multiple tasks by using interrupts, signals that tell the CPU to stop the current task and handle a more urgent one.
+**Multitasking and Process Management**
+>[!TIP] 
+> Manages multiple applications using task scheduling and interrupts.
 
-9.  **Device Interaction (I/O Operations)**  
-   - **Input/Output Devices**: The CPU communicates with hardware devices (e.g., keyboard, monitor, printer) using device drivers (software that controls hardware).  
-   - **Buses**: The I/O buses transfer data between the CPU and devices. For example, typing on a keyboard sends signals to the CPU, which are processed and displayed on the screen.
+**Device Interaction**
+>[!TIP] 
+> Communicates with hardware using device drivers.
 
-10. **Program Execution and Resource Management**  
-    - **Kernel Control**: The kernel continuously manages resources like CPU cycles, memory, and devices to keep the system running smoothly.  
-    - **File System**: When an application accesses files (e.g., reading/writing a file), the OS kernel manages file access and coordinates disk usage.
+**Program Execution and Resource Management**
+>[!TIP] 
+> Manages resources (CPU, memory) and file access.
 
-11. **Program Termination and Cleanup**  
-    - **Closing Applications**: When you close an application, the OS frees up the memory in RAM and any other resources the program was using.  
-    - **Garbage Collection**: In some programming languages (like Python), unused memory is automatically cleared using garbage collection to prevent memory leaks.
+**Program Termination and Cleanup**
+>[!TIP] 
+> Frees up memory and resources when applications are closed.
+- Uses garbage collection to clear unused memory.
 
-12. **System Monitoring**  
-    - **Resource Monitoring**: The OS continuously monitors the system’s performance (e.g., CPU, memory usage, disk usage). It ensures that applications don’t use more resources than available.
+**System Monitoring**
+>[!TIP] 
+> Continuously monitors system performance (CPU, memory, disk usage).
+
+<br><br>
+
+# Workflow of computer working process
+
+```mermaid
+flowchart TD
+    A[Power On] --> B[BIOS/UEFI Initialization]
+    B --> C[OS Loading]
+    C --> D[CPU Fetch-Decode-Execute Cycle]
+    D --> E[Data Transfer via Buses]
+    E --> F[Running Applications]
+    F --> G[Memory Management]
+    G --> H[Multitasking and Process Management]
+    H --> I[Device Interaction]
+    I --> J[Program Execution and Resource Management]
+    J --> K[Program Termination and Cleanup]
+    K --> L[System Monitoring]
+```
+<br>
+
+# Related
+[Python](https://github.com/ariful228/DevOps/tree/main/DevOps/Python)
