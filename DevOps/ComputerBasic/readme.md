@@ -51,7 +51,6 @@
     - **Resource Monitoring**: The OS continuously monitors the system’s performance (e.g., CPU, memory usage, disk usage). It ensures that applications don’t use more resources than available.
 
 
-
 ```mermaid
 graph TD
     A[Power On] --> B[BIOS/UEFI Initialization]
@@ -87,4 +86,5 @@ graph TD
     AE --> AF[Garbage Collection for unused memory]
     AF --> AG[System Monitoring]
     AG --> AH[OS monitors CPU, memory, disk usage]
+
 ```
