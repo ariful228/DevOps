@@ -1,3 +1,5 @@
+# Computer basic workflow
+
 1. **Power On**  
    - **Power Supply**: The power supply sends electricity to all components.  
    - **ROM (Read-Only Memory)**: The BIOS/UEFI, stored in ROM, provides the instructions to start up the system.
@@ -33,7 +35,7 @@
    - **Task Scheduling**: The OS kernel manages multiple applications (processes) at the same time, using multitasking. It allocates CPU time to each running program, making them appear to run simultaneously.  
    - **Interrupts**: The CPU handles multiple tasks by using interrupts, signals that tell the CPU to stop the current task and handle a more urgent one.
 
-9. **Device Interaction (I/O Operations)**  
+9.  **Device Interaction (I/O Operations)**  
    - **Input/Output Devices**: The CPU communicates with hardware devices (e.g., keyboard, monitor, printer) using device drivers (software that controls hardware).  
    - **Buses**: The I/O buses transfer data between the CPU and devices. For example, typing on a keyboard sends signals to the CPU, which are processed and displayed on the screen.
 
@@ -85,3 +87,4 @@ graph TD
     AE --> AF[Garbage Collection for unused memory]
     AF --> AG[System Monitoring]
     AG --> AH[OS monitors CPU, memory, disk usage]
+```
