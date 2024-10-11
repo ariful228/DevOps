@@ -1,3 +1,6 @@
+
+
+
 #  program execution process
 ```
 [Code Editor] 
@@ -33,61 +36,64 @@
 # Detailed Description of Each Component
 
 ## Code Editor:
-Definition: A code editor is a software application that allows programmers to write and edit their source code. Examples include Visual Studio Code, PyCharm, Sublime Text, and Atom.
-Function: The code editor provides syntax highlighting, code completion, and debugging tools, making it easier to write code efficiently.
-Output: The output of this stage is the source code saved in a file (e.g., program.py).
+**Definition:** A code editor is a software application that allows programmers to write and edit their source code. Examples include Visual Studio Code, PyCharm, Sublime Text, and Atom. <br>
+**Function:** The code editor provides syntax highlighting, code completion, and debugging tools, making it easier to write code efficiently. <br>
+**Output:** The output of this stage is the source code saved in a file (e.g., program.py). <br>
 
 
 ## Source Code:
-Definition: Source code is the written code in a programming language (in this case, ) that defines the program's behavior.
-Function: This code contains functions, classes, and variables that implement the logic of the application.
-Example:
+**Definition:** Source code is the written code in a programming language (in this case, ) that defines the program's behavior. <br>
+**Function:** This code contains functions, classes, and variables that implement the logic of the application. <br>
+
+## Example:
+
 ```
 
 def greet():
     print("Hello, World!")
 
 ```
-Output: The source code is fed into the compiler.
+
+**Output:** The source code is fed into the compiler.
 
 
 ## Compiler (or Interpreter in 's case):
-*Definition:* In languages like C or Java, a compiler translates source code into a lower-level language (like machine code). , however, uses an interpreter to convert source code into bytecode.
-*Function:* The compiler (or interpreter) checks the source code for errors, performs lexical analysis, and generates bytecode, which is an intermediate representation of the program.
-*Output:* The output of this stage is bytecode (e.g., .pyc files).
+**Definition:** In languages like C or Java, a compiler translates source code into a lower-level language (like machine code). , however, uses an interpreter to convert source code into bytecode. <br>
+**Function:** The compiler (or interpreter) checks the source code for errors, performs lexical analysis, and generates bytecode, which is an intermediate representation of the program.<br>
+**Output:** The output of this stage is bytecode (e.g., .pyc files).<br>
 
 ## Bytecode:
-*Definition:* Bytecode is a low-level representation of your source code that is platform-independent. It’s a set of instructions that is easier for the machine to execute than high-level source code but not as low-level as machine code.
-*Function:* This bytecode is what the  Virtual Machine (PVM) understands and executes.
-*Example: *The bytecode generated from the source code above would not be human-readable but can be processed by the PVM.
-*Output:* The bytecode is passed to the  Virtual Machine (PVM).
+**Definition:** Bytecode is a low-level representation of your source code that is platform-independent. It’s a set of instructions that is easier for the machine to execute than high-level source code but not as low-level as machine code.<br>
+**Function:** This bytecode is what the  Virtual Machine (PVM) understands and executes.<br>
+**Example:** The bytecode generated from the source code above would not be human-readable but can be processed by the PVM.<br>
+**Output:** The bytecode is passed to the  Virtual Machine (PVM).<br>
 
 
 ## Virtual Machine (PVM):
-*Definition:* The  Virtual Machine (PVM) is a part of the  interpreter that executes the bytecode instructions.
-*Function:* The PVM takes the bytecode and translates it into machine code (binary code) that the CPU can execute directly.
+**Definition:** The  Virtual Machine (PVM) is a part of the  interpreter that executes the bytecode instructions.<br>
+**Function:** The PVM takes the bytecode and translates it into machine code (binary code) that the CPU can execute directly.<br>
 
 
 ## Library Module: 
-While executing the bytecode, the PVM can call functions from various library modules (e.g., math, os, etc.) that provide pre-defined functions and functionalities, facilitating tasks such as mathematical operations, file handling, and network interactions.
-*Output:* The PVM generates binary code from the bytecode.
+While executing the bytecode, the PVM can call functions from various library modules (e.g., math, os, etc.) that provide pre-defined functions and functionalities, facilitating tasks such as mathematical operations, file handling, and network interactions.<br>
+**Output:** The PVM generates binary code from the bytecode.<br>
 
 
 ## Binary Code:
-*Definition:* Binary code consists of machine-level instructions represented in binary (0s and 1s) that the CPU understands.
-*Function: *The CPU executes these instructions directly, performing tasks defined by the original source code.
-*Output:* The binary code results in the actual operation of the program on the hardware.
+**Definition:** Binary code consists of machine-level instructions represented in binary (0s and 1s) that the CPU understands.<br>
+**Function:** The CPU executes these instructions directly, performing tasks defined by the original source code.<br>
+**Output:** The binary code results in the actual operation of the program on the hardware.<br>
 
 
 ## Running Program:
-*Definition:* This is the final stage where the program is actively running and performing its defined tasks.
-*Function:* The CPU processes the binary code, and the program executes, performing actions like displaying output, processing data, or interacting with the user or other systems.
-*Example:* For the given source code, the running program outputs "Hello, World!" to the console.
+**Definition:** This is the final stage where the program is actively running and performing its defined tasks.<br>
+**Function:** The CPU processes the binary code, and the program executes, performing actions like displaying output, processing data, or interacting with the user or other systems.<br>
+**Example:** For the given source code, the running program outputs "Hello, World!" to the console.<br>
 
 <br><br>
 # When  can taken huge memory & CPU?
 
-*Recursion:* High stack usage and CPU cycles.
+**Recursion:** High stack usage and CPU cycles.
 
 ```
 def factorial(n):
@@ -97,7 +103,8 @@ def factorial(n):
 ```
 
 <br>
-*Inefficient Algorithms:* Increased CPU time with poor time complexity.
+
+**Inefficient Algorithms:** Increased CPU time with poor time complexity.
 
 ```
 def bubble_sort(arr):
@@ -109,14 +116,17 @@ def bubble_sort(arr):
 
 ```
 <br>
-*Large Data Structures:* Increased memory usage.
+
+**Large Data Structures:** Increased memory usage.
 ```
 large_list = [x for x in range(10**6)]  # List with 1 million integers
 ```
 <br>
-*Complex List Comprehensions:* High memory footprint if using large datasets.
+
+**Complex List Comprehensions:** High memory footprint if using large datasets.
 <br>
-*OOP Complexity: *Overhead from class inheritance and object instantiation.
+
+**OOP Complexity:** Overhead from class inheritance and object instantiation.
 
 ```
 class A:
@@ -133,24 +143,24 @@ c = C()  # Creates an instance of class C, which has overhead due to the inherit
 ```
 <br>
 
-*Library Overheads:* Libraries can consume a lot of resources.
+**Library Overheads:** Libraries can consume a lot of resources.
 
-*Memory-Intensive Operations:* Loading large datasets can exhaust memory.
+**Memory-Intensive Operations:** Loading large datasets can exhaust memory.
 ```
 import pandas as pd
 df = pd.read_csv('large_file.csv')  # Loading a large CSV file into a DataFrame
 ```
 
-*Multithreading/Multiprocessing:* Context switching and separate memory spaces increase usage.
+**Multithreading/Multiprocessing:** Context switching and separate memory spaces increase usage.
 
-*Profilers/Debuggers:* Additional resource consumption for analysis.
+**Profilers/Debuggers:** Additional resource consumption for analysis.
 
 
 
 *****************
 
 
-1. Basic Syntax
+# 1. Basic Syntax
 
 
 # Printing output
@@ -171,7 +181,7 @@ sum_result = 10 + 5
 product_result = 10 * 5
 ```
 
-2. Control Flow (Conditionals)
+# 2. Control Flow (Conditionals)
    
 ```
 # If-else statements
@@ -190,7 +200,7 @@ else:
 
 ```
 
-3. Loops
+# 3. Loops
 
 ```
 # While loop
@@ -205,7 +215,7 @@ for i in range(1, 6):
 
 ```
 
-4. Functions
+# 4. Functions
 
 ```
 # Defining and calling a function
@@ -216,22 +226,24 @@ greet_result = greet("Alice")  # Output: "Hello, Alice!"
 
 ```
 
-5. Lists
-6. 
+# 5. Lists
+
 ```
 # List creation
-fruits = ['apple', 'banana', 'cherry']
+    fruits = ['apple', 'banana', 'cherry']
 
-# Accessing and modifying elements
-print(fruits[0])  # Output: 'apple'
-fruits[1] = 'blueberry'
+    # Accessing and modifying elements
+    print(fruits[0])  # Output: 'apple'
+    fruits[1] = 'blueberry'
 
-# List comprehensions (advanced)
-squares = [x**2 for x in range(5)]  # Output: [0, 1, 4, 9, 16]
+    # List comprehensions (advanced)
+
+    squares = [x**2 for x in range(5)]  # Output: [0, 1, 4, 9, 16]
 
 ```
 
-6. Dictionaries
+# 6. Dictionaries
+
 ```
 # Dictionary creation and access
 person = {"name": "Alice", "age": 25}
@@ -244,7 +256,7 @@ person['height'] = 5.6
 
 ```
 
-7. Tuples
+# 7. Tuples
    
 
 ```
@@ -259,7 +271,7 @@ x, y = point
 
 ```
 
-8. Sets
+# 8. Sets
 
 ```
 # Set creation
@@ -276,7 +288,7 @@ intersection = a & b  # Output: {3}
 
 ```
 
-9. Error Handling (Exceptions)
+# 9. Error Handling (Exceptions)
 
 ```
 # Try-except block
@@ -289,7 +301,7 @@ finally:
 
 ```
 
-10. Classes and Objects (OOP)
+# 10. Classes and Objects (OOP)
 
 
 ```
@@ -308,7 +320,7 @@ print(dog1.bark())  # Output: "Rex is barking!"
 
 ```
 
-11. Inheritance (OOP)
+# 11. Inheritance (OOP)
 
 ```
 # Base class
@@ -329,7 +341,7 @@ print(cat.sound())  # Output: "Meow!"
 
 ```
 
-12. File Handling
+# 12. File Handling
 
 ```
 # Writing to a file
@@ -342,7 +354,7 @@ with open("example.txt", "r") as file:
     print(content)  # Output: "Hello, World!"
 
  ```   
-13. Lambda Functions
+# 13. Lambda Functions
 
 ```
 # Simple lambda function
@@ -354,7 +366,7 @@ numbers = [1, 2, 3, 4]
 doubled = list(map(lambda x: x * 2, numbers))  # Output: [2, 4, 6, 8]
 
 ```
-14. Decorators (Advanced)
+# 14. Decorators (Advanced)
 
 ```
 # Function decorator
@@ -372,7 +384,7 @@ def say_hello():
 say_hello()
 
 ```
-15. Generators (Advanced)
+# 15. Generators (Advanced)
 
 ```
 # Generator function
@@ -387,7 +399,7 @@ print(next(counter))  # Output: 1
 print(next(counter))  # Output: 2
 
 ```
-16. Comprehensions (Advanced)
+# 16. Comprehensions (Advanced)
 
 ```
 # List comprehension with condition
@@ -398,7 +410,7 @@ squared_dict = {x: x**2 for x in range(5)}  # Output: {0: 0, 1: 1, 2: 4, 3: 9, 4
 
 ```
 
-17. Context Managers (Advanced)
+# 17. Context Managers (Advanced)
 
 ```
 # Custom context manager using 'with' and 'class'
@@ -414,7 +426,7 @@ with MyResource() as resource:
     print("Using resource")
 
 ```
-18. Modules and Imports
+# 18. Modules and Imports
 
 ```
 # Importing standard library modules
@@ -426,7 +438,7 @@ from mymodule import my_function
 my_function()
 ```
 
-19. Working with JSON
+# 19. Working with JSON
 
 ```
 import json
@@ -440,7 +452,7 @@ data_dict = json.loads(json_data)
 
 ```
 
-20. Multithreading (Advanced)
+# 20. Multithreading (Advanced)
 
 ```
 import threading
@@ -457,7 +469,7 @@ thread.join()  # Wait for thread to complete
 
 ```
 
-21. Asynchronous Programming (Advanced)
+# 21. Asynchronous Programming (Advanced)
 
 ```
 import asyncio
@@ -473,7 +485,7 @@ asyncio.run(say_hello())
 
 ```
 
-22. Type Hinting (Advanced)
+# 22. Type Hinting (Advanced)
 
 ```
 # Using type hints
