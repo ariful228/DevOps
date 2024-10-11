@@ -1,20 +1,23 @@
 # What are APIs?
->[!NOTE]
- **API** stands for **Application Programming Interface**. It is a set of rules and protocols that allows different software applications to communicate with each other. 
+
+> [!NOTE]
+> **API** stands for **Application Programming Interface**. It is a set of rules and protocols that allows different software applications to communicate with each other. 
 
 # APIs can be categorized into various types, including:
->[!TIP]
-   - **Web APIs**: These APIs allow communication over the web using HTTP/HTTPS protocols (e.g., REST, SOAP).
-   - **Library APIs**: These provide functions and procedures for software libraries (e.g., Java APIs).
-   - **Operating System APIs**: These define how software components should interact with the operating system (e.g., Windows API).
+
+> [!TIP]
+> - **Web APIs**: These APIs allow communication over the web using HTTP/HTTPS protocols (e.g., REST, SOAP).
+> - **Library APIs**: These provide functions and procedures for software libraries (e.g., Java APIs).
+> - **Operating System APIs**: These define how software components should interact with the operating system (e.g., Windows API).
 
 ## Key Components of APIs
->[!IMPORTANT]
-   1. **Endpoint**: A specific URL where an API can be accessed by a client.
-   2. **Request**: A message sent by the client to the server, typically including an HTTP method (GET, POST, PUT, DELETE) and data (if applicable).
-   3. **Response**: The data sent back from the server to the client, usually in a structured format like JSON or XML.
-   4. **Authentication**: Mechanisms to verify the identity of the user or application accessing the API (e.g., API keys, OAuth).
-   5. **Rate Limiting**: Policies to control how many requests a user can make to the API within a specific timeframe.
+
+> [!IMPORTANT]
+> 1. **Endpoint**: A specific URL where an API can be accessed by a client.
+> 2. **Request**: A message sent by the client to the server, typically including an HTTP method (GET, POST, PUT, DELETE) and data (if applicable).
+> 3. **Response**: The data sent back from the server to the client, usually in a structured format like JSON or XML.
+> 4. **Authentication**: Mechanisms to verify the identity of the user or application accessing the API (e.g., API keys, OAuth).
+> 5. **Rate Limiting**: Policies to control how many requests a user can make to the API within a specific timeframe.
 
 
 # API Workflow
