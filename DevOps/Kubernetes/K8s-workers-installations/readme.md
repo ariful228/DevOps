@@ -54,8 +54,8 @@ ls
 sudo cat 50-cloud-init.yaml
 sudo vim 50-cloud-init.yaml
 sudo netplan apply
-```----
-```
+
+Edit:
 network:
     ethernets:
         enp0s3:
@@ -65,7 +65,6 @@ network:
     version: 
     
     ```
-
 
 # 5. Disable Swap
 `sudo swapoff -a`
