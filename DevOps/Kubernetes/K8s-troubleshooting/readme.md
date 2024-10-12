@@ -17,7 +17,7 @@
 >Look for the --api-servers flag (if present) or check the server address in the config file to ensure that the kubelet is communicating with the API server’s correct IP. <br>
 grep server `/var/lib/kubelet/config.yaml`
 
-## 3. Check etcd Cluster ConfigurationZ
+## 3. Check etcd Cluster Configuration
 >[!NOTE]
 >The etcd cluster is critical for control plane communication and cluster state storage. <br>
 >Check the etcd pod configuration in the `/etc/kubernetes/manifests/etcd.yaml` file on the master node. Look for `--advertise-client-urls` and `--listen-client-urls` to verify which IP etcd is using. <br>
