@@ -35,7 +35,37 @@ sudo cat /etc/sudoers
 ip link
 sudo cat /sys/class/dmi/id/product_uuid
 nc 127.0.0.1 6443 -v
+
+nc -lk 6443
+ >> hello
+
+nc 192.168.10.12 6443
+ >> hello
+
+nc -lk 22
+nc -zv 192.168.10.10 6443
+
 ```
+# Netplan configuration directory and review the configuration.
+
+```
+cd /etc/netplan/
+ls
+sudo cat 50-cloud-init.yaml
+sudo vim 50-cloud-init.yaml
+sudo netplan apply
+```----
+```
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+        enp0s8:
+            addresses: [192.168.10.11/24]
+    version: 
+    
+    ```
+
 
 # 5. Disable Swap
 `sudo swapoff -a`

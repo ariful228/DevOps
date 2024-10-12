@@ -44,8 +44,16 @@ ls
 sudo cat 50-cloud-init.yaml
 sudo vim 50-cloud-init.yaml
 sudo netplan apply
+```----
 ```
-
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+        enp0s8:
+            addresses: [192.168.10.11/24]
+    version: 2
+```
 
 <br><br>
 
