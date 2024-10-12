@@ -17,6 +17,7 @@
       ↓
 [Binary Code] 
       ↓
+      
 [Running Program]
 ```
 
