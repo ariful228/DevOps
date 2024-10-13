@@ -137,3 +137,13 @@ kubectl config current-context
 Verify Nodes Status
 kubectl get nodes
 ```
+
+# Install/Uninstall calico
+```
+kubectl delete -f calico.yaml
+rm -rf calico.yaml
+ 
+curl -L -O https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f calico.yaml
+
+```
