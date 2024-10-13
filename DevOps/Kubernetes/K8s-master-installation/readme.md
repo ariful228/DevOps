@@ -139,6 +139,11 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 <br><br>
 
 # Networking Setup
+>[!NOTE]
+ >Nodes can show "Ready" status without Calico. <br>
+ >Calico is essential for pod networking, and without it, won't be able to run pods properly across the cluster.<br>
+ >Coredns can show "ContainerCreating", without CNI plugin (calico).<br>
+
 ## Apply a pod network (e.g., Calico).
 `kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml`
 
@@ -256,6 +261,68 @@ ariful@k8s-master:~$ sudo systemctl status kubelet
 >> Trun off swapon 
 >> Enable route 
 >> Restart kubelet
+
+<br><br>
+
+# Error: 05
+
+```
+kubectl get pods -n kube-system
+NAME                                 READY   STATUS              RESTARTS      AGE
+coredns-7c65d6cfc9-5sxtj             0/1     ContainerCreating   6 (40m ago)   25h
+coredns-7c65d6cfc9-qbprl             0/1     ContainerCreating   6 (40m ago)   25h
+etcd-k8s-master                      1/1     Running             9             25h
+kube-apiserver-k8s-master            1/1     Running             9             25h
+kube-controller-manager-k8s-master   1/1     Running             11            25h
+kube-proxy-2927w                     1/1     Running             6             22h
+kube-proxy-gsqjw                     1/1     Running             7             25h
+kube-proxy-lfx2v                     1/1     Running             7             25h
+kube-scheduler-k8s-master            1/1     Running             13            25h
+
+```
+
+# Solution:05
+>> By installing calico
+
+<br><br>
+
+# ERROR: 06
+```
+kubectl get pods -n kube-system
+NAME                                       READY   STATUS                  RESTARTS          AGE
+calico-kube-controllers-6879d4fcdc-xnmdp   1/1     Running                 5                 23h
+calico-node-5bvs8                          0/1     Init:CrashLoopBackOff   149 (4m20s ago)   22h
+calico-node-6tqbk                          0/1     Init:CrashLoopBackOff   117 (43s ago)     20h
+calico-node-lgd6w                          1/1     Running                 5                 23h
+coredns-7c65d6cfc9-5sxtj                   1/1     Running                 5                 23h
+coredns-7c65d6cfc9-qbprl                   1/1     Running                 5                 23h
+etcd-k8s-master                            1/1     Running                 7                 23h
+kube-apiserver-k8s-master                  1/1     Running                 7                 23h
+kube-controller-manager-k8s-master         1/1     Running                 9                 23h
+kube-proxy-2927w                           1/1     Running                 5                 20h
+kube-proxy-gsqjw                           1/1     Running                 6                 22h
+kube-proxy-lfx2v                           1/1     Running                 5                 23h
+kube-scheduler-k8s-master                  1/1     Running                 10                23h
+```
+
+# Solution: 06
+
+<br><br>
+
+# Error: 07
+
+```
+ kubectl get pods
+NAME       READY   STATUS                   RESTARTS   AGE
+test-pod   0/1     ContainerStatusUnknown   1          44m
+
+```
+
+# Solution:
+> Install CNI plugin(calico)
+> out-of-memory >[!ADD]
+
+<br><br>
 
 # Network adapter
 ```

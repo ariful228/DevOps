@@ -77,6 +77,7 @@ graph TD
 *Helm:* Kubernetes package manager.<br>
 *ArgoCD: *GitOps continuous delivery tool for Kubernetes, syncing manifests from Git<br>
 
+<br><br>
 
 # Kubernetes Workflow Diagram (A-Z)
 
@@ -152,6 +153,7 @@ graph TD
 
 ```
 
+
 ### Explanation of the Extended Diagram
 
 - **Namespace**: A logical isolation boundary for resources.
@@ -178,3 +180,100 @@ graph TD
 - **PodDisruptionBudget**: Ensures that a certain number of Pods remain available during voluntary disruptions.
 - **Volume**: Represents storage for Pods.
 - **ETL Process**: Represents an external data processing workflow.
+
+<br><br>
+
+# POD Workflow Diagram
+
+```mermaid
+graph TD;
+    A[Deployment] --> B[ReplicaSet];
+    B --> C[Pod];
+    C --> D[Container];
+    C -->|Selects| E[Service];
+    A -->|Manages| F[Scaling];
+    F --> C;
+    G[Namespace] --> A;
+    G --> E;
+    G --> B;
+    G --> C;
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px;
+    style B fill:#bbf,stroke:#333,stroke-width:2px;
+    style C fill:#fbf,stroke:#333,stroke-width:2px;
+    style D fill:#fff,stroke:#333,stroke-width:2px;
+    style E fill:#ffb,stroke:#333,stroke-width:2px;
+    style F fill:#afa,stroke:#333,stroke-width:2px;
+    style G fill:#f8f8f8,stroke:#333,stroke-width:2px;
+```
+
+
+
+### Explanation of Components:
+- **Deployment**: Manages the Pods and their ReplicaSets.
+- **ReplicaSet**: Ensures the desired number of Pods are running.
+- **Pod**: The smallest unit containing one or more containers.
+- **Container**: The actual application or service running inside the Pod.
+- **Service**: Provides stable networking for Pods.
+- **Namespace**: Organizes resources within the cluster.
+
+<br><br>
+
+# Service Diagram
+
+```mermaid
+graph TD;
+    A[Service] --> B[ClusterIP];
+    A --> C[NodePort];
+    A --> D[LoadBalancer];
+    A --> E[Endpoint];
+    A --> F[Selector];
+    
+    style A fill:#ffb,stroke:#333,stroke-width:2px;
+    style B fill:#fff,stroke:#333,stroke-width:2px;
+    style C fill:#fff,stroke:#333,stroke-width:2px;
+    style D fill:#fff,stroke:#333,stroke-width:2px;
+    style E fill:#fff,stroke:#333,stroke-width:2px;
+    style F fill:#fff,stroke:#333,stroke-width:2px;
+```
+
+
+<br><br>
+
+# Pod Diagram
+
+```mermaid
+graph TD;
+    A[Pod] --> B[Container];
+    A --> C[Volume];
+    A --> D[Labels];
+    A --> E[Annotations];
+    A --> F[Status];
+
+    style A fill:#fbf,stroke:#333,stroke-width:2px;
+    style B fill:#fff,stroke:#333,stroke-width:2px;
+    style C fill:#fff,stroke:#333,stroke-width:2px;
+    style D fill:#fff,stroke:#333,stroke-width:2px;
+    style E fill:#fff,stroke:#333,stroke-width:2px;
+    style F fill:#fff,stroke:#333,stroke-width:2px;
+```
+
+
+<br><br>
+
+# 3 Deployment Diagram
+
+```mermaid
+graph TD;
+    A[Deployment] --> B[ReplicaSet];
+    A --> C[PodTemplate];
+    A --> D[RevisionHistory];
+    A --> E[Strategy];
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px;
+    style B fill:#fff,stroke:#333,stroke-width:2px;
+    style C fill:#fff,stroke:#333,stroke-width:2px;
+    style D fill:#fff,stroke:#333,stroke-width:2px;
+    style E fill:#fff,stroke:#333,stroke-width:2px;
+
+```
