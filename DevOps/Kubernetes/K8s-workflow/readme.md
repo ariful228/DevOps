@@ -261,7 +261,7 @@ graph TD;
 
 <br><br>
 
-# 3 Deployment Diagram
+# Deployment Diagram
 
 ```mermaid
 graph TD;
