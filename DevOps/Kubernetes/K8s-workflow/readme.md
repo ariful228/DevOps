@@ -82,7 +82,8 @@ graph TD
 
 ```mermaid
 graph TD
-    A[Namespace] -->|Contains| B[Pod]
+    %% Namespaces
+    A[Namespaces] -->|Contains| B[Pod]
     A -->|Contains| C[Service]
     A -->|Contains| D[Deployment]
     A -->|Contains| E[StatefulSet]
@@ -91,52 +92,65 @@ graph TD
     A -->|Contains| H[CronJob]
     A -->|Contains| I[ReplicaSet]
     A -->|Contains| J[Ingress]
-    A -->|Contains| K[ConfigMap]
-    A -->|Contains| L[Secret]
-    A -->|Contains| M[Persistent Volume]
-    A -->|Contains| N[Persistent Volume Claim]
-    A -->|Contains| O[NetworkPolicy]
-    A -->|Contains| P[Horizontal Pod Autoscaler]
-    A -->|Contains| Q[ServiceAccount]
-    A -->|Contains| R[Role]
-    A -->|Contains| S[RoleBinding]
-    A -->|Contains| T[ClusterRole]
-    A -->|Contains| U[ClusterRoleBinding]
-    A -->|Contains| V[Endpoint]
-    A -->|Contains| W[Node]
-    A -->|Contains| X[PodDisruptionBudget]
-    A -->|Contains| Y[Volume]
-    A -->|Contains| Z[ETL Process]
 
+    %% Configuration
+    K[Configuration] -->|Contains| L[ConfigMap]
+    K -->|Contains| M[Secret]
+
+    %% Storage
+    N[Storage] -->|Contains| O[Persistent Volume]
+    N -->|Contains| P[Persistent Volume Claim]
+    N -->|Contains| Q[Volume]
+
+    %% Network
+    R[Network] -->|Contains| S[NetworkPolicy]
+    R -->|Contains| T[Endpoint]
+
+    %% Access Control
+    U[Access Control] -->|Contains| V[ServiceAccount]
+    U -->|Contains| W[Role]
+    U -->|Contains| X[RoleBinding]
+    U -->|Contains| Y[ClusterRole]
+    U -->|Contains| Z[ClusterRoleBinding]
+
+    %% Monitoring and Scaling
+    AA[Monitoring and Scaling] -->|Contains| AB[Horizontal Pod Autoscaler]
+    AA -->|Contains| AC[PodDisruptionBudget]
+
+    %% Compute Resources
+    AD[Compute Resources] -->|Contains| AE[Node]
+    AD -->|Contains| AF[ETL Process]
+
+    %% Relationships
     B -->|Managed by| D
-    B -->|Accesses| M
+    B -->|Accesses| O
     B -->|Communicates via| C
-    B -->|Uses| K
     B -->|Uses| L
+    B -->|Uses| M
     C -->|Routes Traffic to| B
     C -->|Managed by| J
     D -->|Creates| I
-    I -->|Scaling| P
-    E -->|Uses| M
-    F -->|Runs on| W
+    I -->|Scaling| AB
+    E -->|Uses| O
+    F -->|Runs on| AE
     J -->|Defines| C
-    K -->|Injects| B
     L -->|Injects| B
-    N -->|Claims| M
-    O -->|Secures| B
-    P -->|Monitors| D
-    Q -->|Grants Access to| B
-    R -->|Defines Permissions for| Q
-    S -->|Links| R
-    T -->|Defines Permissions for| Q
-    U -->|Links| T
-    V -->|Points to| B
-    W -->|Hosts| B
-    X -->|Ensures Availability of| B
-    Z -->|Processes Data for| N
+    M -->|Injects| B
+    P -->|Claims| O
+    S -->|Secures| B
+    AB -->|Monitors| D
+    V -->|Grants Access to| B
+    W -->|Defines Permissions for| V
+    X -->|Links| W
+    Y -->|Defines Permissions for| V
+    Z -->|Links| Y
+    T -->|Points to| B
+    AE -->|Hosts| B
+    AC -->|Ensures Availability of| B
+    AD -->|Computes Resources for| B
+    AF -->|Processes Data for| P
+
 ```
-
-
 
 ### Explanation of the Extended Diagram
 
