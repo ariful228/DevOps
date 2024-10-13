@@ -42,10 +42,8 @@ sudo reboot
 cd /etc/netplan/
 ls
 sudo cat 50-cloud-init.yaml
-sudo vim 50-cloud-init.yaml
 sudo netplan apply
-```----
-```
+sudo vim 50-cloud-init.yaml
 network:
     ethernets:
         enp0s3:
@@ -182,6 +180,7 @@ error execution phase preflight: [preflight] Some fatal errors occurred:
 To see the stack trace of this error execute with --v=5 or higher"
 ```
 # Solution:01 
+>> Remove existing app which one taken thise port
 
 <br><br>
 
@@ -221,6 +220,7 @@ The connection to the server 192.168.10.10:6443 was refused - did you specify th
 ```
 
 # Solution :03
+>> Copy config file to login user's home direcotory under .kube and give the permission.
 
 <br><br>
 
@@ -238,7 +238,9 @@ ariful@k8s-master:~$ sudo systemctl status kubelet
 
 ```
 # Solution:03
-
+>> Trun off swapon 
+>> Enable route 
+>> Restart kubelet
 
 # Network adapter
 ```
