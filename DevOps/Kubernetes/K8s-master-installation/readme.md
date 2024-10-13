@@ -200,10 +200,10 @@ kube-scheduler-k8s-master            1/1     Running             3          5m46
 
 # Solution:02
 ## By install carico network plugin
-`kubectl delete -f https://docs.projectcalico.org/manifests/calico.yaml`
-`kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml`
-`sudo kubeadm certs renew all`
-`sudo systemctl restart kubelet`
+> `kubectl delete -f https://docs.projectcalico.org/manifests/calico.yaml`
+> `kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml`
+> `sudo kubeadm certs renew all`
+> `sudo systemctl restart kubelet`
 
 <br><br>
 
@@ -237,7 +237,7 @@ ariful@k8s-master:~$ sudo systemctl status kubelet
    Main PID: 2420 (code=exited, status=1/FAILURE```
 
 ```
-# Solution:03
+# Solution:04
 >> Trun off swapon 
 >> Enable route 
 >> Restart kubelet
