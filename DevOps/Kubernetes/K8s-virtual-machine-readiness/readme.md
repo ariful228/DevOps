@@ -13,7 +13,7 @@
 
 # Prerequisite Summary for Installing kubeadm
 
-## System Requirements: CPU(2) & RAM(2GB)
+## System Requirements:
 >[!NOTE]
  >Compatible Linux host (Debian or Red Hat based).
  >Minimum 2 GB RAM and 2 CPUs for control plane machines.
@@ -33,7 +33,7 @@
 
 <br>
 
-## Ports:(6443)
+## Ports:(6443, 10250, 10257, 10259)
 >[!NOTE]
  >Required ports must be open for Kubernetes components.
 
@@ -41,14 +41,14 @@
 
 ## Routing:
 >[!NOTE]
- >Verify that routes are properly configured.
+ >Verify that routes are properly configured.<br>
 `sysctl -w net.ipv4.ip_forward=1`
 
 <br>
 
 ## Loading the br_netfilter module:
 >[!NOTE]
- >br_netfilter module is often necessary when using network plugins like Calico, Flannel.
+ >br_netfilter module is often necessary when using network plugins like Calico, Flannel. <br>
 `modprobe br_netfilter`
 
 <br>
@@ -56,7 +56,8 @@
 
 ## Swap Configuration:
 >[!NOTE]
- >Disable swap `/etc/fstab` for persistence.
+ >Disable swap `/etc/fstab` for persistence. <br>
+ >`swapon -a`
 
 <br>
 
@@ -68,8 +69,8 @@
 
 ## Define the Kubernetes version and used CRI-O stream
 >[!NOTE]
- >KUBERNETES_VERSION=v1.31
- >CRIO_VERSION=v1.31
+ >KUBERNETES_VERSION=v1.31 <br>
+ >CRIO_VERSION=v1.31 <br>
 
 <br>
 

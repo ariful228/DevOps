@@ -181,6 +181,18 @@ To see the stack trace of this error execute with --v=5 or higher"
 ```
 # Solution:01 
 >> Remove existing app which one taken thise port
+```
+sudo snap remove microk8s
+
+netstat -antlp | grep 10259
+
+sudo lsof -i :10259
+sudo lsof -i :10257 ; sudo lsof -i :10250 ; sudo lsof -i :10259
+
+sudo kill -9 85847
+
+   
+```
 
 <br><br>
 
@@ -201,7 +213,10 @@ kube-scheduler-k8s-master            1/1     Running             3          5m46
 # Solution:02
 ## By install carico network plugin
 > `kubectl delete -f https://docs.projectcalico.org/manifests/calico.yaml`
+> `sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl remove -f calico.yaml`
+
 > `kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml`
+
 > `sudo kubeadm certs renew all`
 > `sudo systemctl restart kubelet`
 
@@ -247,3 +262,116 @@ ariful@k8s-master:~$ sudo systemctl status kubelet
 how to do this "Check network adapters
 If you have more than one network adapter, and your Kubernetes components are not reachable on the default route, we recommend you add IP route(s) so Kubernetes cluster addresses go via the appropriate adapter"
 ```
+<br><br>
+
+# Master Readiness Commands as raff
+
+## 1. Basic Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `clear`                     | Clears the terminal screen.                        |
+| `ls`                        | Lists the files and directories in the current directory. |
+| `cd [directory]`           | Changes the current working directory.             |
+| `ll`                        | Lists the files and directories in a long listing format (with details). |
+| `pwd`                       | Prints the current working directory.              |
+| `cat [file]`               | Displays the content of a file.                   |
+| `exit`                      | Exits the terminal or current session.             |
+| `history`                   | Shows the command history of the terminal.         |
+
+## 2. Networking Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `ifconfig`                  | Displays network interface configuration.          |
+| `ip a`                      | Shows IP address and network interface information. |
+| `ping [IP/hostname]`       | Sends ICMP echo requests to test network connectivity. |
+| `hostname`                  | Prints or sets the system's hostname.             |
+| `hostname -i`              | Displays the IP address associated with the hostname. |
+| `hostname -I`              | Displays all IP addresses associated with the hostname. |
+| `ip route show`            | Displays the routing table.                        |
+| `nc [IP] [port]`           | Netcat tool to test TCP/UDP connections.          |
+| `telnet [IP] [port]`       | Opens a telnet connection to test port connectivity. |
+
+## 3. System Management Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `apt install [package]`    | Installs a package.                               |
+| `sudo apt install [package]` | Installs a package with superuser privileges.   |
+| `apt-get update`           | Updates the list of available packages.           |
+| `sudo apt-get update`      | Updates the package list with superuser privileges. |
+| `sudo systemctl status [service]` | Checks the status of a system service. |
+| `sudo systemctl enable [service]` | Enables a service to start at boot.     |
+| `sudo systemctl start [service]` | Starts a system service.                 |
+| `sudo systemctl restart [service]` | Restarts a system service.             |
+| `sudo reboot`              | Reboots the system.                              |
+| `init 0`                   | Shuts down the system.                           |
+
+## 4. SSH & Remote Access Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `apt install ssh`          | Installs the SSH service.                         |
+| `sudo apt install ssh`     | Installs SSH with superuser privileges.           |
+| `sudo systemctl status ssh` | Checks the status of the SSH service.            |
+| `sudo systemctl start ssh` | Starts the SSH service.                           |
+| `sudo systemctl enable ssh` | Enables SSH to start at boot.                   |
+
+## 5. File and User Permissions Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `sudo visudo`              | Opens the sudoers file for editing.               |
+| `sudo cat /etc/sudoers`    | Displays the content of the sudoers file.        |
+| `sudo vim [file]`          | Edits a file with vim using superuser privileges. |
+| `sudo chown [user]:[group] [file]` | Changes the ownership of a file.       |
+| `sudo mkdir -p [directory]` | Creates a directory (including parent directories) with superuser privileges. |
+
+## 6. Kubernetes Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `kubeadm init`             | Initializes a Kubernetes master node.             |
+| `kubectl get nodes`        | Lists all nodes in the Kubernetes cluster.        |
+| `kubectl cluster-info`     | Displays cluster information.                      |
+| `kubectl apply -f [file]`  | Applies a configuration file to Kubernetes.       |
+| `kubectl describe [resource]` | Describes a specific Kubernetes resource.     |
+| `kubectl config view`      | Views Kubernetes configuration.                    |
+| `kubectl get pods -n kube-system` | Lists all pods in the kube-system namespace. |
+| `sudo kubeadm reset`       | Resets the Kubernetes cluster.                     |
+
+## 7. Networking Tools and Diagnostics
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `netstat -ntup`            | Displays network connections and listening ports.  |
+| `lsof -i :[port]`          | Lists open files and ports in use on a system.    |
+| `sudo lsof -i :[port]`     | Lists open files and ports using superuser privileges. |
+| `netstat -antlp | grep [port]` | Filters network connections for a specific port. |
+
+## 8. Swap and Kernel Settings
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `sudo swapoff -a`          | Disables swap.                                    |
+| `swapon -s`                | Displays swap status.                             |
+| `sudo sysctl -w net.ipv4.ip_forward=1` | Enables IP forwarding.                 |
+
+## 9. File Transfer & Downloading Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `curl [URL]`               | Downloads or transfers data from a URL.          |
+| `sudo curl [URL]`          | Downloads data from a URL with superuser privileges. |
+| `echo [variable]`          | Prints the value of a variable.                   |
+
+## 10. Process Management Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `ps aux | grep [process]`   | Lists processes and searches for a specific one.  |
+| `kill -9 [PID]`            | Forces termination of a process by its PID.       |
+| `sudo kill -9 [PID]`       | Terminates a process with superuser privileges.    |
+
+## 11. Network Configuration Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `sudo netplan apply`        | Applies network configuration changes made with Netplan. |
+| `sudo cat /sys/class/dmi/id/product_uuid` | Shows the product UUID of the system. |
+
+## 12. Miscellaneous Commands
+| Command                     | Description                                        |
+|-----------------------------|----------------------------------------------------|
+| `export [variable]=[value]` | Sets an environment variable.                     |
+| `env`                       | Displays all environment variables.                |
