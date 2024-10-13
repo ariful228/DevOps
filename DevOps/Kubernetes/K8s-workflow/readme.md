@@ -76,3 +76,91 @@ graph TD
 *kubectl:* CLI for managing the cluster.<br>
 *Helm:* Kubernetes package manager.<br>
 *ArgoCD: *GitOps continuous delivery tool for Kubernetes, syncing manifests from Git<br>
+
+
+# Kubernetes Workflow Diagram (A-Z)
+
+```mermaid
+graph TD
+    A[Namespace] -->|Contains| B[Pod]
+    A -->|Contains| C[Service]
+    A -->|Contains| D[Deployment]
+    A -->|Contains| E[StatefulSet]
+    A -->|Contains| F[DaemonSet]
+    A -->|Contains| G[Job]
+    A -->|Contains| H[CronJob]
+    A -->|Contains| I[ReplicaSet]
+    A -->|Contains| J[Ingress]
+    A -->|Contains| K[ConfigMap]
+    A -->|Contains| L[Secret]
+    A -->|Contains| M[Persistent Volume]
+    A -->|Contains| N[Persistent Volume Claim]
+    A -->|Contains| O[NetworkPolicy]
+    A -->|Contains| P[Horizontal Pod Autoscaler]
+    A -->|Contains| Q[ServiceAccount]
+    A -->|Contains| R[Role]
+    A -->|Contains| S[RoleBinding]
+    A -->|Contains| T[ClusterRole]
+    A -->|Contains| U[ClusterRoleBinding]
+    A -->|Contains| V[Endpoint]
+    A -->|Contains| W[Node]
+    A -->|Contains| X[PodDisruptionBudget]
+    A -->|Contains| Y[Volume]
+    A -->|Contains| Z[ETL Process]
+
+    B -->|Managed by| D
+    B -->|Accesses| M
+    B -->|Communicates via| C
+    B -->|Uses| K
+    B -->|Uses| L
+    C -->|Routes Traffic to| B
+    C -->|Managed by| J
+    D -->|Creates| I
+    I -->|Scaling| P
+    E -->|Uses| M
+    F -->|Runs on| W
+    J -->|Defines| C
+    K -->|Injects| B
+    L -->|Injects| B
+    N -->|Claims| M
+    O -->|Secures| B
+    P -->|Monitors| D
+    Q -->|Grants Access to| B
+    R -->|Defines Permissions for| Q
+    S -->|Links| R
+    T -->|Defines Permissions for| Q
+    U -->|Links| T
+    V -->|Points to| B
+    W -->|Hosts| B
+    X -->|Ensures Availability of| B
+    Z -->|Processes Data for| N
+```
+
+
+
+### Explanation of the Extended Diagram
+
+- **Namespace**: A logical isolation boundary for resources.
+- **Pod**: The smallest deployable unit in Kubernetes, representing a single instance of a running process.
+- **Service**: A stable endpoint for accessing Pods, managing routing.
+- **Deployment**: Manages the lifecycle of Pods, ensuring the desired state.
+- **StatefulSet**: Similar to deployments but manages stateful applications.
+- **DaemonSet**: Ensures that a copy of a Pod runs on all (or some) nodes.
+- **Job**: Runs a Pod to completion.
+- **CronJob**: Schedules Jobs to run at specified times.
+- **ReplicaSet**: Ensures a specified number of Pod replicas are running at any time.
+- **Ingress**: Manages external access to services, typically HTTP.
+- **ConfigMap**: Stores configuration data.
+- **Secret**: Stores sensitive information, such as passwords.
+- **Persistent Volume (PV)**: A piece of storage in the cluster.
+- **Persistent Volume Claim (PVC)**: A request for storage by a user.
+- **NetworkPolicy**: Controls the traffic between Pods.
+- **Horizontal Pod Autoscaler**: Scales Pods based on metrics.
+- **ServiceAccount**: Provides an identity for processes that run in a Pod.
+- **Role & RoleBinding**: Defines permissions within a namespace.
+- **ClusterRole & ClusterRoleBinding**: Defines permissions across the cluster.
+- **Endpoint**: Represents the network address of a service.
+- **Node**: A worker machine in Kubernetes.
+- **PodDisruptionBudget**: Ensures that a certain number of Pods remain available during voluntary disruptions.
+- **Volume**: Represents storage for Pods.
+- **ETL Process**: Represents an external data processing workflow.
