@@ -324,6 +324,159 @@ test-pod   0/1     ContainerStatusUnknown   1          44m
 
 <br><br>
 
+<br><br>
+
+# Error: 08
+
+NAME         STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+k8s-master   Ready    control-plane   3d13h   v1.31.1   10.0.2.15     <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   cri-o://1.31.1
+k8s-node01   Ready    <none>          3d10h   v1.31.1   10.0.2.15     <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   cri-o://1.31.1
+k8s-node02   Ready    <none>          3d12h   v1.31.1   10.0.2.15     <none>        Ubuntu 24.04.1 LTS   6.8.0-45-generic   cri-o://1.31.1
+
+```
+
+# Solution:08
+
+
+```
+sudo bash -c 'cat <<EOF > /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      addresses: [192.168.10.10/24]
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.10.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4
+EOF'
+
+
+```
+sudo bash -c 'cat <<EOF > /etc/netplan/50-cloud-init.yaml
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      addresses: [192.168.10.12/24]
+      gateway4: 192.168.10.254
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4
+EOF'
+
+```
+```
+ariful@k8s-node02:/etc/netplan$ tra
+trace-bpfcc  trace-cmd    tracepath    trap
+ariful@k8s-node02:/etc/netplan$ tracepath
+
+Usage
+  tracepath [options] <destination>
+
+Options:
+  -4             use IPv4
+  -6             use IPv6
+  -b             print both name and IP
+  -l <length>    use packet <length>
+  -m <hops>      use maximum <hops>
+  -n             no reverse DNS name resolution
+  -p <port>      use destination <port>
+  -V             print version and exit
+  <destination>  DNS name or IP address
+
+For more details see tracepath(8).
+ariful@k8s-node02:/etc/netplan$ tracepath 4.2.2.2
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  _gateway                                              1.367ms
+ 1:  _gateway                                              2.069ms
+ 2:  10.0.2.2                                              2.261ms
+ 3:  no reply
+ 4:  no reply
+^C
+ariful@k8s-node02:/etc/netplan$ tracepath -n 4.2.2.2
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  192.168.10.254                                        0.917ms
+ 1:  192.168.10.254                                        0.876ms
+ 2:  10.0.2.2                                              1.301ms
+ 3:  no reply
+ 4:  no reply
+ 5:  no reply
+ 6:  no reply
+ 7:  no reply
+ 8:  no reply
+^C
+ariful@k8s-node02:/etc/netplan$ ping google.com
+PING google.com (142.250.182.14) 56(84) bytes of data.
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=1 ttl=54 time=55.9 ms
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=2 ttl=54 time=51.5 ms
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=3 ttl=54 time=50.1 ms
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=4 ttl=54 time=50.5 ms
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=5 ttl=54 time=52.1 ms
+64 bytes from maa05s18-in-f14.1e100.net (142.250.182.14): icmp_seq=6 ttl=54 time=50.5 ms
+^C
+--- google.com ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5006ms
+rtt min/avg/max/mdev = 50.057/51.744/55.878/1.965 ms
+ariful@k8s-node02:/etc/netplan$
+
+```
+ariful@k8s-master:~$ sudo kubeadm init
+W1016 08:45:30.092448    1165 version.go:109] could not fetch a Kubernetes version from the internet: unable to get URL "https://dl.k8s.io/release/stable-1.txt": Get "https://dl.k8s.io/release/stable-1.txt": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+W1016 08:45:30.096835    1165 version.go:110] falling back to the local client version: v1.31.1
+[init] Using Kubernetes version: v1.31.1
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+
+
+```
+
+# error : 09
+
+kubectl logs cilium-wkrhk -n kube-system -c install-cni-binaries
+Error from server (NotFound): the server could not find the requested resource ( pods/log cilium-wkrhk)
+
+
+```
+
+# error : 10
+ kubectl logs cilium-wkrhk -n kube-system --previous
+Defaulted container "cilium-agent" out of: cilium-agent, config (init), mount-cgroup (init), apply-sysctl-overwrites (init), mount-bpf-fs (init), clean-cilium-state (init), install-cni-binaries (init)
+Error from server (NotFound): the server could not find the requested resource ( pods/log cilium-wkrhk)
+ariful@k8s-master:~$ kubectl -n kube-system get pods -l k8s-app=cilium
+NAME           READY   STATUS     RESTARTS       AGE
+cilium-sfkfw   0/1     Running    20             26h
+cilium-wkrhk   0/1     Init:0/6   21             26h
+cilium-xl4h8   0/1     Init:0/6   22 (82s ago)   26h
+
+
+
+```
+ariful@k8s-master:~$ sudo journalctl -f -o short -u kubelet
+Oct 16 12:38:44 k8s-master kubelet[919]: E1016 12:38:44.259907     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:38:49 k8s-master kubelet[919]: E1016 12:38:49.265215     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:38:54 k8s-master kubelet[919]: E1016 12:38:54.272625     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:38:59 k8s-master kubelet[919]: E1016 12:38:59.278500     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:04 k8s-master kubelet[919]: E1016 12:39:04.283212     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:09 k8s-master kubelet[919]: E1016 12:39:09.286009     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:14 k8s-master kubelet[919]: E1016 12:39:14.288397     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:19 k8s-master kubelet[919]: E1016 12:39:19.297193     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:24 k8s-master kubelet[919]: E1016 12:39:24.297988     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:29 k8s-master kubelet[919]: E1016 12:39:29.300425     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:34 k8s-master kubelet[919]: E1016 12:39:34.304952     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:39 k8s-master kubelet[919]: E1016 12:39:39.310486     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+Oct 16 12:39:44 k8s-master kubelet[919]: E1016 12:39:44.315597     919 kubelet.go:2902] "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: no CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
+
+```
+<br><br>
+sudo kubeadm join 192.168.10.10:6443 --token hjeblw.4vt9odjz7lhw38r6 --discovery-token-ca-cert-hash sha256:1a536ceb4ba2d37c8361367f85e806ae399b58d4dd30ccd6c262072b5dc5ef07
+
 # Network adapter
 ```
 how to do this "Check network adapters
